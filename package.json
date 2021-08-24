@@ -1,0 +1,33 @@
+{
+  "name": "@meteorrn/oauth-facebook",
+  "version": "1.0.0",
+  "description": "Accounts Facebook for Meteor React Native",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon — exec babel-node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/meteorrn/oauth-facebook.git"
+  },
+  "keywords": [
+    "meteor",
+    "react-native",
+    "facebook",
+    "oauth",
+    "login",
+    "accounts",
+    "accounts-facebook"
+  ],
+  "author": "Antware",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/meteorrn/oauth-facebook/issues"
+  },
+  "homepage": "https://github.com/meteorrn/oauth-facebook#readme",
+  "dependencies": {
+    "@meteorrn/core": "2.1.0",
+    "react-native-fbsdk-next": "4.3.0"
+  }
+}
