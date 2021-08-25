@@ -75,7 +75,7 @@ ____
 
 Currently, there is a [PR](https://github.com/meteor/meteor/pull/11603) for **accounts-facebook** package to make easier
 this configuration. Once PR was merged and
-published in a Meteor release, you will have to add the following packages:
+published in a Meteor release, you will have to add the following packages and skip the above code:
 
 ```shell
 meteor add accounts-facebook service-configuration
@@ -88,7 +88,7 @@ import { Meteor } from 'meteor/meteor';
 import { ServiceConfiguration } from 'meteor/service-configuration';
 
 if (Meteor.isDevelopment) {
-	if (Meteor.settings.private?.OAUTH?.google) {
+	if (Meteor.settings.private?.OAUTH?.facebook) {
 			process.env.OAUTH_FACEBOOK_APP_ID = Meteor.settings.private.OAUTH.facebook.APP_ID;
 			process.env.OAUTH_FACEBOOK_SECRET = Meteor.settings.private.OAUTH.facebook.SECRET;
 	} else {
