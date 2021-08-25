@@ -8,7 +8,13 @@ In your react native app, run the following command to install it:
 npm install @meteorrn/oauth-facebook
 ```
 
-In your meteor app, add the following code into a server's file:
+In your meteor app, make sure you have installed the following packages:
+
+```
+meteor add accounts-base accounts-password http
+```
+
+Then, add the following code into a server's file:
 
 ```js
 import { Meteor } from 'meteor/meteor';
