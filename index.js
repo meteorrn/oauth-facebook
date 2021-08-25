@@ -28,7 +28,7 @@ Meteor.loginWithFacebook = async function(options, callback) {
 				}
 				dataAccessToken = await AccessToken.getCurrentAccessToken();
 				Meteor._startLoggingIn();
-				Meteor.call('login', { facebook: dataAccessToken }, (error, response) => {
+				Meteor.call('login', { facebookSignIn: true, ...dataAccessToken }, (error, response) => {
 					Meteor._endLoggingIn();
 					Meteor._handleLoginCallback(error, response);
 					typeof callback == 'function' && callback(error);
