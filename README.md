@@ -56,23 +56,23 @@ const registerHandler = () => {
 // Gets the identity of our user and by extension checks if
 // our access token is valid.
 const getIdentity = (accessToken, fields) => {
-	try {
-		return HTTP.get('https://graph.facebook.com/v2.4/me', {
-			params: {
-				access_token: accessToken,
-				fields: fields.join(',')
-			}
-		}).data;
-	} catch (err) {
-		throw Object.assign(
-			new Error(`Failed to fetch identity from Facebook. ${ err.message }`),
-			{ response: err.response }
-		);
-	}
+    try {
+        return HTTP.get('https://graph.facebook.com/v2.4/me', {
+            params: {
+                access_token: accessToken,
+                fields: fields.join(',')
+            }
+        }).data;
+    } catch (err) {
+        throw Object.assign(
+            new Error(`Failed to fetch identity from Facebook. ${ err.message }`),
+            { response: err.response }
+        );
+    }
 };
 
 Meteor.startup(() => {
-	registerHandler();
+    registerHandler();
 });
 
 ```
