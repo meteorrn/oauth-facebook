@@ -22,35 +22,35 @@ import { Accounts } from 'meteor/accounts-base';
 import { HTTP } from 'meteor/http';
 
 const registerHandler = () => {
-	Accounts.registerLoginHandler('facebook', function(request) {
-		// If this isn't facebook login then we don't care about it. No need to proceed.
-		if (request.facebookSignIn !== true) {
-			return;
-		}
+    Accounts.registerLoginHandler('facebook', function(request) {
+        // If this isn't facebook login then we don't care about it. No need to proceed.
+        if (request.facebookSignIn !== true) {
+            return;
+        }
 
-		// include basic fields from facebook
-		// https://developers.facebook.com/docs/facebook-login/permissions/
-		const whitelisted = ['id', 'email', 'name', 'first_name', 'last_name',
-			'middle_name', 'name_format', 'picture', 'short_name'];
+        // include basic fields from facebook
+        // https://developers.facebook.com/docs/facebook-login/permissions/
+        const whitelisted = ['id', 'email', 'name', 'first_name', 'last_name',
+            'middle_name', 'name_format', 'picture', 'short_name'];
 
-		// Get our user's identifying information. This also checks if the accessToken
-		// is valid. If not it will error out.
-		const identity = getIdentity(request.accessToken, whitelisted);
+        // Get our user's identifying information. This also checks if the accessToken
+        // is valid. If not it will error out.
+        const identity = getIdentity(request.accessToken, whitelisted);
 
-		// Build our actual data object.
-		const serviceData = {
-			accessToken: request.accessToken,
-			expiresAt: (+new Date) + (1000 * request.expirationTime)
-		};
-		const fields = Object.assign({}, serviceData, identity);
+        // Build our actual data object.
+        const serviceData = {
+            accessToken: request.accessToken,
+            expiresAt: (+new Date) + (1000 * request.expirationTime)
+        };
+        const fields = Object.assign({}, serviceData, identity);
 		
-		return Accounts.updateOrCreateUserFromExternalService('facebook', { ...fields }, {
-			profile: {
-				name: identity.name,
-				//add more fields if you want
-			}
-		});
-	});
+        return Accounts.updateOrCreateUserFromExternalService('facebook', { ...fields }, {
+            profile: {
+                name: identity.name,
+                //add more fields if you want
+            }
+        });
+    });
 };
 
 // Gets the identity of our user and by extension checks if
@@ -94,24 +94,22 @@ import { Meteor } from 'meteor/meteor';
 import { ServiceConfiguration } from 'meteor/service-configuration';
 
 if (Meteor.isDevelopment) {
-	if (Meteor.settings.private?.OAUTH?.facebook) {
-			process.env.OAUTH_FACEBOOK_APP_ID = Meteor.settings.private.OAUTH.facebook.APP_ID;
-			process.env.OAUTH_FACEBOOK_SECRET = Meteor.settings.private.OAUTH.facebook.SECRET;
-	} else {
-		console.warn('[App name] - Facebook OAuth settings are not configured.');
-		process.env.OAUTH_FACEBOOK_APP_ID = '';
-		process.env.OAUTH_FACEBOOK_SECRET = '';
-	}
+    if (Meteor.settings.private?.OAUTH?.facebook) {
+        process.env.OAUTH_FACEBOOK_APP_ID = Meteor.settings.private.OAUTH.facebook.APP_ID;
+        process.env.OAUTH_FACEBOOK_SECRET = Meteor.settings.private.OAUTH.facebook.SECRET;
+    } else {
+        console.warn('[App name] - Facebook OAuth settings are not configured.');
+        process.env.OAUTH_FACEBOOK_APP_ID = '';
+        process.env.OAUTH_FACEBOOK_SECRET = '';
+    }
 }
 
-ServiceConfiguration.configurations.upsert({
-	service: 'facebook'
-}, {
-	$set: {
-		appId: process.env.OAUTH_FACEBOOK_APP_ID,
-		loginStyle: "popup",
-		secret: process.env.OAUTH_FACEBOOK_SECRET
-	}
+ServiceConfiguration.configurations.upsert({ service: 'facebook' }, {
+    $set: {
+        appId: process.env.OAUTH_FACEBOOK_APP_ID,
+        loginStyle: "popup",
+        secret: process.env.OAUTH_FACEBOOK_SECRET
+    }
 });
 ```
 
@@ -151,7 +149,7 @@ Facebook SDK for iOS.
 The `AppDelegate.m` file can only have one method for `openUrl`. If you're also using `RCTLinkingManager` to handle deep
 links, you should handle both results in your `openUrl` method.
 
-```objc
+```objetive-c
 #import <FBSDKCoreKit/FBSDKCoreKit.h> // <- Add This Import
 #import <React/RCTLinkingManager.h> // <- Add This Import
 
@@ -192,22 +190,22 @@ import FacebookButton from './path/to/customFacebookButton';
 
 export default class Login extends Component {
 
-	handleLoginFB() {
-		Meteor.loginWithFacebook({ requestPermissions: ['email', 'public_profile'] }, (error) => {
-			if (!error) {
-				//Do anything
-			} else {
-				console.error('There was an error in login with Facebook: ', error);
-			}
-		});
-	}
+    handleLoginFB() {
+        Meteor.loginWithFacebook({ requestPermissions: ['email', 'public_profile'] }, (error) => {
+            if (!error) {
+                //Do anything
+            } else {
+                console.error('There was an error in login with Facebook: ', error);
+            }
+        });
+    }
 
-	render() {
-		return (
-			<View>
-				<FacebookButton onPress={ handleLoginFB }/>
-			</View>
-		);
-	}
+    render() {
+        return (
+            <View>
+                <FacebookButton onPress={ handleLoginFB }/>
+            </View>
+        );
+    }
 };
 ```
