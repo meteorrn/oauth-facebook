@@ -26,8 +26,10 @@
     "url": "https://github.com/meteorrn/oauth-facebook/issues"
   },
   "homepage": "https://github.com/meteorrn/oauth-facebook#readme",
-  "dependencies": {
-    "@meteorrn/core": "2.1.0",
+  "dependencies":{
     "react-native-fbsdk-next": "4.3.0"
+  },
+  "peerDependencies": {
+    "@meteorrn/core": ">=2.1.0"
   }
 }
