@@ -1,5 +1,9 @@
 # Accounts Facebook for Meteor React Native.
 
+## Prerequisites
+
+Have RN >= 0.63.3
+
 ## Installation
 
 In your react native app, run the following command to install it:
