@@ -1,4 +1,4 @@
-# [Draft] Accounts Facebook for Meteor React Native.
+# Accounts Facebook for Meteor React Native.
 
 ## Installation
 
@@ -208,4 +208,10 @@ export default class Login extends Component {
         );
     }
 };
+```
+
+If you want to do **logout**, remember to use this way:
+
+```js
+Meteor.logoutFromFacebook();
 ```

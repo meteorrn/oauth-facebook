@@ -1,6 +1,6 @@
 {
   "name": "@meteorrn/oauth-facebook",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Accounts Facebook for Meteor React Native",
   "main": "index.js",
   "scripts": {

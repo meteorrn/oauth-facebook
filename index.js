@@ -41,3 +41,15 @@ Meteor.loginWithFacebook = async function(options, callback) {
 	}
 };
 
+Meteor.logoutFromFacebook = function() {
+	return Promise((resolve, reject) => {
+		Meteor.logout(async(error) => {
+			if (!error) {
+				await LoginManager.logOut();
+				resolve();
+			} else {
+				reject(error);
+			}
+		});
+	});
+};
